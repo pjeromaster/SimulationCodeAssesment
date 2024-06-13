@@ -1,4 +1,4 @@
-﻿StreamReader sr = new(@"C:\Users\pjero\source\repos\Simulator\Simulator\radar-output.csv");
+﻿StreamReader sr = new("..\\..\\..\\..\\Simulator\\radar-output.csv");
 Random rnd = new();
 System.Timers.Timer timer = new(1000);
 timer.Elapsed += ( (object? sender, ElapsedEventArgs e) =>{
