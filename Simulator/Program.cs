@@ -3,7 +3,7 @@
 namespace Simulator;
 internal static class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         Console.ForegroundColor = ConsoleColor.White; Console.CursorVisible = false;
 
@@ -15,21 +15,20 @@ internal static class Program
         patriot.FriendFoeIdentifier.OnHostileDetection += OnHostileDetection;
         patriot.FiringUnit.OnMissileFired += OnMissileFired;
 
-        timer.Elapsed += ( (object? sender, ElapsedEventArgs e) =>
+        timer.Elapsed += (object? sender, ElapsedEventArgs e) =>
         {
             StepCount++;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.CursorLeft = 0;  Console.Write($"\n{StepCount,3} | ");
+            Console.CursorLeft = 0; Console.Write($"\n{StepCount,3} | ");
             Console.CursorLeft = 35; Console.Write('|');
             Console.CursorLeft = 56; Console.Write('|');
             patriot.Update();
-        } );
+        };
 
         timer.Start();
 
         while(patriot.Radar.IsActive())
             Thread.Sleep(1000);
-        Console.WriteLine("\nSimulation is finished");
     }
 
     private static void OnMissileFired(object? sender, MissileFiredEventArgs e)
@@ -57,10 +56,9 @@ internal static class Program
     /// <summary> Attempts to locate the CSV file relative to the working directory. </summary>
     /// <returns> The relative path to the CSV file </returns>
     /// <exception cref="System.IO.FileNotFoundException">Could not find radar-output.csv</exception>
-    static string FindCSVPath()
-    {
-        if(File.Exists("radar-output.csv")) return "radar-output.csv";
-        if(File.Exists("..\\..\\..\\radar-output.csv")) return "..\\..\\..\\radar-output.csv";
-        throw new FileNotFoundException("Could not find radar-output.csv");
-    }
+    private static string FindCSVPath() => File.Exists("radar-output.csv")
+            ? "radar-output.csv"
+            : File.Exists("..\\..\\..\\radar-output.csv")
+            ? "..\\..\\..\\radar-output.csv"
+            : throw new FileNotFoundException("Could not find radar-output.csv");
 }
