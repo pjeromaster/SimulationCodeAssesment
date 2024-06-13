@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <AnalysisLevel>latest</AnalysisLevel>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AnalysisLevel>latest</AnalysisLevel>
+	</PropertyGroup>
 
-  <ItemGroup>
-	  <None Include="C:\Users\pjero\source\repos\Simulator\Simulator\.editorconfig" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="C:\Users\pjero\source\repos\Simulator\Simulator\.editorconfig" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="System.Text" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="System.Text" />
+		<Using Include="System.Timers" />
+	</ItemGroup>
 
 </Project>
