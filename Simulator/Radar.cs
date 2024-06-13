@@ -3,30 +3,32 @@
 public interface IRadar : IModel
 {
     public event EventHandler<RadarScanEventArgs>? OnScan;
+    public bool IsActive();
 }
 
 public class CSVFileRadar : IRadar
 {
     public event EventHandler<RadarScanEventArgs>? OnScan;
     private readonly StreamReader reader;
+    private bool Active;
+    public bool IsActive() => Active;
     public CSVFileRadar(string path)
     {
-        //try
-        //{
         reader = new(path);
         _ = reader.ReadLine() ?? throw new IOException();
         ResetReader();
-        //}
-        //catch(IOException e)
-        //{
-        //    Console.WriteLine($"The file at \"{path}\" could not be read:");
-        //    Console.WriteLine(e.Message);
-        //}
+        Active = true;
     }
     public void Update()
     {
+        if(!Active) return;
         string? line = reader.ReadLine();
-        if(line != null)
+        if(line == null)
+        {
+            Active = false;
+            reader.Close();
+        }
+        else
         {
             List<int> data = ParseRadarOutput(line);
             RadarScanEventArgs e = new(data);
