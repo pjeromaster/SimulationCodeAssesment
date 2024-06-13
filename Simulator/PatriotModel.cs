@@ -1,8 +1,4 @@
 ﻿namespace Simulator;
-public interface IModel
-{
-    public void Update();
-}
 public class PatriotModel : IModel
 {
     public IRadar Radar { get; }

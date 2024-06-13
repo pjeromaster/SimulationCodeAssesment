@@ -11,7 +11,7 @@ internal static class Program
         int StepCount = 0;
 
         string csvPath = (args.Length > 0) ? args[0] : FindCSVPath();
-        PatriotModel patriot = new(new CSVFileRadar(csvPath), new OddFoeIdentifier(), new FiringUnit(0.8f));
+        PatriotModel patriot = new(new CSVFileRadar(csvPath), new OddFoeIdentifier(), new ProbabilityFiringUnit(0.8f));
         patriot.FriendFoeIdentifier.OnHostileDetection += OnHostileDetection;
         patriot.FiringUnit.OnMissileFired += OnMissileFired;
 
